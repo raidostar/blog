@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+<hr/>
+<% if user_signed_in? %>
+  <%= current_user.email %> 様、ご訪問いただいて誠にありがとうございます！
+  <%= link_to "会員情報", edit_user_registration_path %>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "ログイン", user_session_path %>
+  <%= link_to "会員登録", "/users/sign_up" %>
+<% end %>
+  <%= search_form_for @search, url: posts_path do |f| %>
+  <%= f.text_field :title_cont, placeholder: "検索するテキストを入力..." %>
+  <%= f.submit ("検索"), class: "search-btn", style: "display: inherit; cursor: pointer" %>
+  <% end %>
+<hr/>
+<table>
+  <thead>
+    <tr>
+      <th class="post_title">タイトル</th>
+      <!-- <th>コンテンツ</th> -->
+      <th>ユーザ</th>
+      <th>HITCOUNT</th>
+      <th>アップロード</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @search_posts.with_deleted.each do |post| %>
+      <tr>
+        <% if post.deleted? %>
+        <td class="post_title" style="color: darkgrey;">Sorry........This post has been deleted</td>
+        <td style="color: darkgrey;"><%= post.user.email %></td>
+        <td style="color: darkgrey;"><%= "#{post.impressionist_count} views" %></td>
+        <td style="color: darkgrey;"><%= post.created_at.to_s[0,11] %></td>
+        <% else %>
+        <td class="post_title">
+          <%= link_to post.title.truncate(30, omission: '...'), (@bulletin.present? ? [post.bulletin, post] : post) %>
+          (<%= post.comments.size %>)
+        </td>
+        <td><%= post.user.email %></td>
+        <td><%= "#{post.impressionist_count} views" %></td>
+        <td><%= post.created_at.to_s[0,11] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @posts.with_deleted  %>
+<br>
+
+<%= link_to '新規登録', (@bulletin.present? ? new_bulletin_post_path(@bulletin) : new_post_path), class: 'btn btn-default' %>

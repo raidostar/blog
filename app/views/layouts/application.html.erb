@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-left" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/"> MY<i> BLOG</i></a>
+        </div>
+        <div>
+        <a href="/bulletins/1/posts">Ruby on Rails</a>
+        <a href="/bulletins/2/posts">JAVA</a>
+        <a href="/bulletins/3/posts">JavaScript</a>
+        <a href="/bulletins/4/posts">Python</a>
+        <a href="/bulletins/5/posts">MySQL</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <%= yield %>
+    </div> <!-- /container -->
+  </body>
+</html>

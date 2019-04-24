@@ -1,0 +1,5 @@
+<li id="comment_<%=comment.id %>">
+  <%= comment.body %><span style="padding-left: 560px;">|</span>
+  <%= time_ago_in_words(comment.created_at) %> ago<span>|</span>
+  <%= link_to "delete", [comment.post, comment], method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
+</li>

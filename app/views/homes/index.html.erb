@@ -1,0 +1,23 @@
+<div>
+  <% if user_signed_in? %>
+    <%= current_user.email %> 様、ご訪問いただいて誠にありがとうございます！
+    <%= link_to "会員情報", edit_user_registration_path %>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to "ログイン", user_session_path %>
+    <%= link_to "会員登録", "/users/sign_up" %>
+  <% end %>
+</div>
+
+<hr/>
+
+<%= alert %>
+<!-- <%= notice %> -->
+
+<% if user_signed_in? %>
+  <div>
+  <img src="sunset.jpg">
+  </div>
+<% else %>
+  まずはログインして頂けます。
+<% end %>

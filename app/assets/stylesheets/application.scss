@@ -1,0 +1,54 @@
+@import "bootstrap";
+@import "comments";
+
+body { padding-top: 60px; }
+a { padding-right: 10px; }
+th, td { width: 180px; text-align:center;}
+.post_title{ width: 1000px; }
+input#post_title{ width:1200px; }
+input[type=submit]{ border: aliceblue; color: #0080D0; }
+textarea{ width:1200px; height:300px; }
+#comment_body{ width:900px; height:100px; }
+
+#post_search{
+  display: inline;
+}
+
+/* 検索ボックス */
+dl.searchbox{
+  width: 10px;
+  position:relative;
+  background-color:#fff;
+  border:1px solid #aaa;
+  border-radius:6px;
+}
+dl.searchbox dt{
+  padding:3px;
+}
+dl.searchbox dt input{
+  width:30px;
+  height:30px;
+  line-height:30px;
+  background:none;
+  border:none;
+}
+dl.searchbox dd{
+  position:absolute;
+  top:1px;
+  right:1px;
+  width:30%;
+}
+.search-btn{
+  display:block;
+  background:#5fad35;
+  width:10%;
+  height:36px;
+  line-height:36px;
+  border:none;
+  border-radius: 0 6px 6px 0;
+  color:#FFF;
+}
+
+.search-btn:hover {
+  background:#228B22;
+}

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>Writer:</strong>
+  <%= @post.user.email %>
+</p>
+
+<% if can? :edit, @post %>
+  <%= link_to 'Edit', edit_bulletin_post_path(@bulletin) %>
+ |
+<% end %>
+<%= link_to 'Back', (@bulletin.present? ? bulletin_posts_path : post_path) %>
+<% if can? :destroy, @post %>
+ | <%= link_to 'Destroy', (@bulletin.present? ? [@post.bulletin, @post] : @post), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<%= render "comments/comments" %>
